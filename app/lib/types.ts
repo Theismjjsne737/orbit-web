@@ -28,6 +28,7 @@ export interface UserSubscription {
   monthlyPrice: number;
   addedAt: string;
   lastUsed: string | null;
+  renewsOn: string | null;
 }
 
 export interface OrbitData {

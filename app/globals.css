@@ -12,8 +12,8 @@
   --font-mono: var(--font-geist-mono);
 }
 
-body {
-  background: var(--background);
+html, body {
+  background: #040407;
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -21,18 +21,45 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* ─── Background ──────────────────────────────────────── */
+/* ─── Background base ─────────────────────────── */
 .bg-orbit {
   background-color: #040407;
-  background-image:
-    radial-gradient(ellipse 90% 65% at 10% -5%,  rgba(124, 58, 237, 0.24) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 45% at 90% 98%,  rgba(79, 70, 229, 0.18) 0%, transparent 55%),
-    radial-gradient(ellipse 38% 30% at 88% 24%,  rgba(37, 99, 235, 0.09) 0%, transparent 52%),
-    radial-gradient(ellipse 50% 50% at 50% 50%,  rgba(10, 8, 20, 0.6) 0%, transparent 80%);
   min-height: 100dvh;
 }
 
-/* ─── Typography ──────────────────────────────────────── */
+/* ─── Dot grid pattern ────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.07) 1px,
+    transparent 0
+  );
+  background-size: 28px 28px;
+}
+
+/* ─── Floating orb animations ─────────────────── */
+@keyframes orbFloat1 {
+  0%,  100% { transform: translate(   0px,   0px) scale(1.00); }
+   33% { transform: translate(  45px, -55px) scale(1.06); }
+   66% { transform: translate( -30px,  40px) scale(0.95); }
+}
+
+@keyframes orbFloat2 {
+  0%,  100% { transform: translate(   0px,   0px) scale(1.00); }
+   40% { transform: translate( -50px,  35px) scale(1.07); }
+   70% { transform: translate(  35px, -45px) scale(0.93); }
+}
+
+@keyframes orbFloat3 {
+  0%,  100% { transform: translate(   0px,   0px) scale(1.00); }
+   50% { transform: translate(  25px, -30px) scale(1.04); }
+}
+
+.animate-orb-1 { animation: orbFloat1 24s ease-in-out infinite; }
+.animate-orb-2 { animation: orbFloat2 30s ease-in-out infinite; }
+.animate-orb-3 { animation: orbFloat3 18s ease-in-out infinite; }
+
+/* ─── Typography ──────────────────────────────── */
 .text-gradient {
   background: linear-gradient(165deg, #ffffff 0%, rgba(255,255,255,0.78) 100%);
   -webkit-background-clip: text;
@@ -54,9 +81,33 @@ body {
   background-clip: text;
 }
 
-/* ─── Glass surfaces ──────────────────────────────────── */
+/* Animated shifting gradient — for the big Orbit wordmark */
+@keyframes gradientShift {
+  0%,  100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+}
+
+.text-gradient-animated {
+  background: linear-gradient(
+    135deg,
+    #ede9fe 0%,
+    #c4b5fd 18%,
+    #a78bfa 35%,
+    #8b5cf6 50%,
+    #6366f1 65%,
+    #a78bfa 80%,
+    #ede9fe 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 6s ease infinite;
+}
+
+/* ─── Glass surfaces ──────────────────────────── */
 .card-glass {
-  background: rgba(255, 255, 255, 0.028);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.068);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -65,7 +116,7 @@ body {
 }
 
 .card-glass:hover {
-  background: rgba(255, 255, 255, 0.045);
+  background: rgba(255, 255, 255, 0.046);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -86,7 +137,7 @@ body {
     0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
-/* ─── Buttons ─────────────────────────────────────────── */
+/* ─── Buttons ─────────────────────────────────── */
 .btn-glow {
   background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
   box-shadow:
@@ -112,7 +163,7 @@ body {
   transition-duration: 0.06s;
 }
 
-/* ─── Inputs ──────────────────────────────────────────── */
+/* ─── Inputs ──────────────────────────────────── */
 .input-glass {
   background: rgba(255, 255, 255, 0.038);
   border: 1px solid rgba(255, 255, 255, 0.085);
@@ -130,10 +181,15 @@ body {
   outline: none;
 }
 
-/* ─── Animations ──────────────────────────────────────── */
+/* ─── Entrance animations ─────────────────────── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 @keyframes fadeIn {
@@ -141,50 +197,31 @@ body {
   to   { opacity: 1; }
 }
 
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.96); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
 @keyframes pulseSoft {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.45; }
+  50% { opacity: 0.4; }
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+@keyframes haloBreath {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50%       { transform: scale(1.12); opacity: 0.35; }
 }
 
-.animate-fade-up {
-  animation: fadeUp 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
+.animate-fade-up    { animation: fadeUp   0.44s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-scale-in   { animation: scaleIn  0.36s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fade-in    { animation: fadeIn   0.3s ease both; }
+.animate-pulse-soft { animation: pulseSoft 2.8s ease-in-out infinite; }
+.animate-halo       { animation: haloBreath 3.5s ease-in-out infinite; }
 
-.animate-fade-in {
-  animation: fadeIn 0.3s ease both;
-}
+/* ─── Scrollbar ───────────────────────────────── */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: rgba(255,255,255,0.08); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.16); }
 
-.animate-scale-in {
-  animation: scaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
+/* ─── Selection & focus ───────────────────────── */
+::selection { background: rgba(139, 92, 246, 0.32); color: #fff; }
 
-.animate-pulse-soft {
-  animation: pulseSoft 2.8s ease-in-out infinite;
-}
-
-/* ─── Scrollbar ───────────────────────────────────────── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
-
-/* ─── Selection ───────────────────────────────────────── */
-::selection {
-  background: rgba(139, 92, 246, 0.32);
-  color: #fff;
-}
-
-/* ─── Focus ring ──────────────────────────────────────── */
 *:focus-visible {
   outline: 2px solid rgba(139, 92, 246, 0.65);
   outline-offset: 3px;

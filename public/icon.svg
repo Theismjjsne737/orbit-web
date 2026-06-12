@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0d0a1a"/>
+      <stop offset="100%" stop-color="#040407"/>
+    </radialGradient>
+    <radialGradient id="planet" cx="42%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="#c4b5fd"/>
+      <stop offset="45%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#3b0764"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="orbitglow">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+
+  <!-- Outer orbit ring -->
+  <ellipse cx="256" cy="256" rx="168" ry="72" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-opacity="0.35" filter="url(#orbitglow)" transform="rotate(-22 256 256)"/>
+
+  <!-- Middle orbit ring -->
+  <ellipse cx="256" cy="256" rx="118" ry="50" fill="none" stroke="#8b5cf6" stroke-width="1.5" stroke-opacity="0.5" filter="url(#orbitglow)" transform="rotate(15 256 256)"/>
+
+  <!-- Planet core -->
+  <circle cx="256" cy="256" r="62" fill="url(#planet)" filter="url(#glow)"/>
+
+  <!-- Planet shine -->
+  <ellipse cx="238" cy="236" rx="22" ry="14" fill="white" opacity="0.14"/>
+
+  <!-- Orbiting dot — outer ring -->
+  <circle cx="256" cy="256" r="9" fill="#a78bfa" filter="url(#glow)"
+    transform="rotate(-22 256 256) translate(168 0)"/>
+
+  <!-- Orbiting dot — middle ring -->
+  <circle cx="256" cy="256" r="6" fill="#c4b5fd" filter="url(#glow)"
+    transform="rotate(165 256 256) translate(0 50)"/>
+
+  <!-- Tiny accent dot -->
+  <circle cx="256" cy="256" r="4" fill="#7c3aed" opacity="0.7"
+    transform="rotate(-22 256 256) translate(-168 0)"/>
+</svg>

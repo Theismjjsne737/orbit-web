@@ -2,16 +2,8 @@
 
 import { useState } from 'react';
 import { OrbitUser } from '@/app/lib/types';
-
-function OrbitMark({ size = 18 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 22 22" fill="none" aria-hidden="true">
-      <ellipse cx="11" cy="11" rx="9.5" ry="5" stroke="#8b5cf6" strokeWidth="1.4" fill="none" strokeLinecap="round" opacity="0.65"/>
-      <circle cx="11" cy="11" r="3.2" fill="#a78bfa"/>
-      <circle cx="19.6" cy="7.6" r="1.5" fill="#c4b5fd" opacity="0.9"/>
-    </svg>
-  );
-}
+import { OrbitWordmark } from '@/app/components/OrbitLogo';
+import AnimatedBackground from '@/app/components/AnimatedBackground';
 
 const FEATURES = [
   { label: 'Unlimited subscriptions tracked' },
@@ -49,14 +41,13 @@ export default function Upgrade({ user, onUpgrade, onBack }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-orbit text-white flex flex-col">
+    <div className="relative min-h-screen text-white flex flex-col overflow-hidden">
+      <AnimatedBackground />
+
       {/* Header */}
-      <header className="px-6 py-4 border-b border-white/[0.05]">
+      <header className="relative z-10 px-6 py-4 border-b border-white/[0.05]">
         <div className="max-w-2xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <OrbitMark size={18} />
-            <span className="text-[15px] font-semibold tracking-tight text-gradient-violet">Orbit</span>
-          </div>
+          <OrbitWordmark size="md" />
           <button
             onClick={onBack}
             className="text-[13px] text-white/28 hover:text-white/60 transition-colors flex items-center gap-1.5"
@@ -69,7 +60,7 @@ export default function Upgrade({ user, onUpgrade, onBack }: Props) {
         </div>
       </header>
 
-      <main className="flex-1 flex flex-col items-center justify-center px-6 py-14">
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-14">
         <div className="w-full max-w-[380px] space-y-8">
 
           {/* Hero */}
@@ -86,7 +77,6 @@ export default function Upgrade({ user, onUpgrade, onBack }: Props) {
 
           {/* Pricing card */}
           <div className="relative rounded-2xl card-elevated overflow-hidden animate-fade-up" style={{ animationDelay: '0.06s' }}>
-            {/* Glow blob */}
             <div className="absolute -top-12 -right-12 w-48 h-48 bg-violet-500/12 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute -bottom-8 -left-8 w-36 h-36 bg-indigo-500/8 rounded-full blur-2xl pointer-events-none" />
 
@@ -100,7 +90,7 @@ export default function Upgrade({ user, onUpgrade, onBack }: Props) {
                 <p className="text-[12px] text-white/28">Billed monthly · Cancel in two clicks</p>
               </div>
 
-              {/* Feature list */}
+              {/* Features */}
               <div className="space-y-3">
                 {FEATURES.map(f => (
                   <div key={f.label} className="flex items-center gap-3">
@@ -138,7 +128,7 @@ export default function Upgrade({ user, onUpgrade, onBack }: Props) {
             </div>
           </div>
 
-          {/* Comparison */}
+          {/* Comparison table */}
           <div className="card-glass rounded-2xl overflow-hidden animate-fade-up" style={{ animationDelay: '0.12s' }}>
             <div className="grid grid-cols-3 text-center border-b border-white/[0.06]">
               <div className="py-3 text-[10px] text-white/28 font-semibold uppercase tracking-widest">Feature</div>
@@ -153,7 +143,7 @@ export default function Upgrade({ user, onUpgrade, onBack }: Props) {
               { label: 'Data export', free: '—', pro: '✓' },
             ].map((row, i) => (
               <div key={row.label} className={`grid grid-cols-3 text-center ${i > 0 ? 'border-t border-white/[0.04]' : ''}`}>
-                <div className="py-3 px-2 text-[12px] text-white/40 text-left px-4">{row.label}</div>
+                <div className="py-3 px-4 text-[12px] text-white/40 text-left">{row.label}</div>
                 <div className="py-3 text-[12px] text-white/30 border-l border-white/[0.05]">{row.free}</div>
                 <div className={`py-3 text-[12px] border-l border-white/[0.05] font-medium ${
                   row.pro === '✓' || row.pro === 'Unlimited' ? 'text-violet-400' : 'text-white/30'
@@ -165,9 +155,7 @@ export default function Upgrade({ user, onUpgrade, onBack }: Props) {
           {/* Trust */}
           <div className="text-center space-y-1.5 animate-fade-up" style={{ animationDelay: '0.16s' }}>
             <p className="text-[12px] text-white/22">No annual lock-in. No hidden fees. No upsells.</p>
-            <p className="text-[11px] text-white/14">
-              To cancel: Settings → Billing → Cancel. Takes 10 seconds.
-            </p>
+            <p className="text-[11px] text-white/14">To cancel: Settings → Billing → Cancel. Takes 10 seconds.</p>
           </div>
         </div>
       </main>

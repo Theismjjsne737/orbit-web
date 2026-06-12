@@ -134,3 +134,56 @@ export const GOALS = [
   { id: 'creative-projects', label: 'Creative projects', emoji: '🎨' },
   { id: 'just-exploring', label: 'Just exploring AI', emoji: '🔭' },
 ] as const;
+
+// Tool IDs that offer free trials
+export const TRIAL_TOOLS = new Set([
+  'cursor', 'github-copilot', 'claude-pro', 'chatgpt-plus', 'windsurf', 'lovable', 'bolt', 'replit', 'v0',
+  'jasper', 'copy-ai', 'writesonic', 'grammarly', 'notion-ai', 'wordtune', 'rytr',
+  'midjourney', 'canva-ai', 'leonardo-ai', 'ideogram', 'krea-ai', 'playground-ai', 'clipdrop',
+  'perplexity', 'elicit', 'consensus', 'chatpdf',
+  'otter', 'motion', 'fireflies', 'reclaim-ai', 'loom', 'clickup-ai', 'granola',
+  'runway', 'heygen', 'descript', 'elevenlabs', 'captions-ai', 'opus-clip', 'pika', 'suno',
+  'gamma', 'beautiful-ai', 'framer-ai',
+]);
+
+export type UserRole = 'developer' | 'marketer' | 'writer' | 'student' | 'entrepreneur' | 'researcher' | 'creative' | 'manager';
+export type AiLevel = 'beginner' | 'intermediate' | 'power';
+export type UserNeed = 'code' | 'write' | 'research' | 'visuals' | 'tasks' | 'video';
+
+const ROLE_TOOLS: Record<UserRole, string[]> = {
+  developer: ['cursor', 'github-copilot', 'claude-pro', 'chatgpt-plus', 'perplexity', 'windsurf'],
+  marketer: ['jasper', 'copy-ai', 'grammarly', 'chatgpt-plus', 'canva-ai', 'notion-ai'],
+  writer: ['grammarly', 'notion-ai', 'sudowrite', 'chatgpt-plus', 'perplexity', 'wordtune'],
+  student: ['grammarly', 'notion-ai', 'chatgpt-plus', 'perplexity', 'elicit', 'consensus'],
+  entrepreneur: ['chatgpt-plus', 'notion-ai', 'zapier', 'gamma', 'grammarly', 'claude-pro'],
+  researcher: ['perplexity', 'elicit', 'consensus', 'chatpdf', 'chatgpt-plus', 'claude-pro'],
+  creative: ['midjourney', 'canva-ai', 'runway', 'elevenlabs', 'ideogram', 'suno'],
+  manager: ['otter', 'motion', 'fireflies', 'clickup-ai', 'zapier', 'loom'],
+};
+
+const NEED_TOOLS: Record<UserNeed, string[]> = {
+  code: ['cursor', 'github-copilot', 'windsurf', 'chatgpt-plus'],
+  write: ['grammarly', 'notion-ai', 'jasper', 'copy-ai'],
+  research: ['perplexity', 'elicit', 'consensus', 'chatpdf'],
+  visuals: ['midjourney', 'canva-ai', 'ideogram', 'leonardo-ai'],
+  tasks: ['motion', 'zapier', 'reclaim-ai', 'clickup-ai'],
+  video: ['runway', 'heygen', 'descript', 'opus-clip'],
+};
+
+export function getSuggestedToolIds(role: UserRole | null, aiLevel: AiLevel | null, needs: UserNeed[]): string[] {
+  const all: string[] = [];
+
+  if (role) all.push(...(ROLE_TOOLS[role] ?? []));
+  needs.forEach(n => all.push(...(NEED_TOOLS[n] ?? [])));
+
+  // Beginners: prepend easy-start tools
+  const base = aiLevel === 'beginner'
+    ? ['chatgpt-plus', 'grammarly', 'notion-ai', 'canva-ai', ...all]
+    : all;
+
+  // Dedup, prioritize trial tools, limit to 6
+  const unique = [...new Set(base)];
+  const withTrials = unique.filter(id => TRIAL_TOOLS.has(id));
+  const withoutTrials = unique.filter(id => !TRIAL_TOOLS.has(id));
+  return [...withTrials, ...withoutTrials].slice(0, 6);
+}
