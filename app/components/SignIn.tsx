@@ -123,7 +123,7 @@ export default function SignIn({ onSignIn }: Props) {
             ].map(({ icon, text }) => (
               <div key={text} className="flex items-center gap-3">
                 <span className="text-[16px] shrink-0">{icon}</span>
-                <span className="text-[13px] text-white/42 leading-relaxed">{text}</span>
+                <span className="text-[15px] text-white/75 leading-relaxed">{text}</span>
               </div>
             ))}
           </div>
@@ -134,7 +134,7 @@ export default function SignIn({ onSignIn }: Props) {
             <button
               onClick={handleGoogle}
               disabled={anyLoading}
-              className="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl font-semibold text-[14px] text-white btn-glow disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl font-semibold text-[16px] text-white btn-glow disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {googleLoading ? <Spinner /> : <GoogleIcon />}
               {googleLoading ? 'Redirecting…' : 'Continue with Google'}
@@ -144,7 +144,7 @@ export default function SignIn({ onSignIn }: Props) {
             <button
               onClick={handleApple}
               disabled={anyLoading}
-              className="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl font-semibold text-[14px] text-white btn-glow disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl font-semibold text-[16px] text-white btn-glow disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {appleLoading ? <Spinner /> : <AppleIcon />}
               {appleLoading ? 'Redirecting…' : 'Continue with Apple'}
@@ -154,7 +154,7 @@ export default function SignIn({ onSignIn }: Props) {
           {/* Divider */}
           <div className="w-full flex items-center gap-4 animate-fade-up" style={{ animationDelay: '0.26s' }}>
             <div className="flex-1 h-px bg-white/[0.06]" />
-            <span className="text-[12px] text-white/25 font-medium">or continue with email</span>
+            <span className="text-[16px] text-white/60 font-medium">or continue with email</span>
             <div className="flex-1 h-px bg-white/[0.06]" />
           </div>
 
@@ -170,16 +170,16 @@ export default function SignIn({ onSignIn }: Props) {
                 placeholder="your@email.com"
                 value={email}
                 onChange={e => { setEmail(e.target.value); setError(''); }}
-                className="w-full px-4 py-3.5 rounded-xl input-glass text-[14px] text-white"
+                className="w-full px-4 py-3.5 rounded-xl input-glass text-[16px] text-white"
                 autoComplete="email"
                 disabled={anyLoading}
               />
-              {error && <p className="text-red-400 text-[12px] px-1">{error}</p>}
+              {error && <p className="text-red-400 text-[16px] px-1">{error}</p>}
             </div>
             <button
               type="submit"
               disabled={anyLoading}
-              className="w-full py-3.5 rounded-xl font-semibold text-[14px] text-white btn-glow disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full py-3.5 rounded-xl font-semibold text-[16px] text-white btn-glow disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {emailLoading ? (
                 <span className="flex items-center justify-center gap-2">
@@ -190,7 +190,7 @@ export default function SignIn({ onSignIn }: Props) {
             </button>
           </form>
 
-          <p className="text-[11px] text-white/18 text-center animate-fade-up" style={{ animationDelay: '0.34s' }}>
+          <p className="text-[16px] text-white/60 text-center animate-fade-up" style={{ animationDelay: '0.34s' }}>
             No credit card required · Free forever for up to {FREE_LIMIT} tools
 
           </p>
