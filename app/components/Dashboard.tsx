@@ -193,16 +193,16 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
           <OrbitWordmark size="md" />
           <div className="flex items-center gap-3">
             {isPro ? (
-              <span className="text-[9px] px-2 py-1 rounded-full bg-violet-500/12 border border-violet-500/22 text-violet-300 uppercase tracking-widest font-semibold">Pro</span>
+              <span className="text-[16px] px-2 py-1 rounded-full bg-violet-500/12 border border-violet-500/22 text-violet-300 uppercase tracking-widest font-semibold">Pro</span>
             ) : (
-              <span className="text-[9px] px-2 py-1 rounded-full border border-white/8 text-white/60 uppercase tracking-widest font-medium">Free</span>
+              <span className="text-[16px] px-2 py-1 rounded-full border border-white/8 text-white/60 uppercase tracking-widest font-medium">Free</span>
             )}
-            <span className="text-[12px] text-white/80 hidden sm:block">{user.email}</span>
+            <span className="text-[16px] text-white/80 hidden sm:block">{user.email}</span>
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setShowExportMenu(v => !v)}
-                className="text-[12px] text-white/80 hover:text-white/80 transition-colors"
+                className="text-[16px] text-white/80 hover:text-white/80 transition-colors"
               >
                 Export ↓
               </button>
@@ -213,14 +213,14 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
                     <button
                       type="button"
                       onClick={() => { exportJSON(data); setShowExportMenu(false); }}
-                      className="w-full text-left px-3 py-2 text-[12px] text-white/80 hover:text-white/85 hover:bg-white/[0.04] transition-colors"
+                      className="w-full text-left px-3 py-2 text-[16px] text-white/80 hover:text-white/85 hover:bg-white/[0.04] transition-colors"
                     >
                       Export JSON
                     </button>
                     <button
                       type="button"
                       onClick={() => { exportCSV(data, toolNameMap); setShowExportMenu(false); }}
-                      className="w-full text-left px-3 py-2 text-[12px] text-white/80 hover:text-white/85 hover:bg-white/[0.04] transition-colors"
+                      className="w-full text-left px-3 py-2 text-[16px] text-white/80 hover:text-white/85 hover:bg-white/[0.04] transition-colors"
                     >
                       Export CSV
                     </button>
@@ -231,7 +231,7 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
             <button
               type="button"
               onClick={() => { localSignOut(); oauthSignOut({ callbackUrl: '/' }); }}
-              className="text-[12px] text-white/80 hover:text-white/80 transition-colors"
+              className="text-[16px] text-white/80 hover:text-white/80 transition-colors"
             >
               Sign out
             </button>
@@ -249,7 +249,7 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
             {/* Hero spend */}
             <div className="space-y-1 animate-fade-up">
               {goal && (
-                <p className="text-[10px] text-white/85 font-medium uppercase tracking-[0.2em] mb-3">
+                <p className="text-[15px] text-white/85 font-medium uppercase tracking-[0.2em] mb-3">
                   {goal.emoji} {goal.label}
                 </p>
               )}
@@ -259,7 +259,7 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
                 </span>
                 <span className="text-white/80 text-[22px] font-normal pb-4">/mo</span>
               </div>
-              <p className="text-[13px] text-white/85 mt-2">
+              <p className="text-[15px] text-white/85 mt-2">
                 {data.subscriptions.length} subscription{data.subscriptions.length !== 1 ? 's' : ''}
                 <span className="mx-2 text-white/75">·</span>
                 <span className="text-white/60">${yearlyTotal.toLocaleString()}/year</span>
@@ -270,10 +270,10 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
             {nearLimit && (
               <div className="p-4 rounded-2xl bg-violet-950/50 border border-violet-500/22 flex items-center justify-between gap-4 animate-scale-in">
                 <div>
-                  <p className="text-violet-200 font-semibold text-[13px]">Free limit reached</p>
-                  <p className="text-violet-400/50 text-[12px] mt-0.5">Tracking {FREE_LIMIT} of {FREE_LIMIT} tools</p>
+                  <p className="text-violet-200 font-semibold text-[15px]">Free limit reached</p>
+                  <p className="text-violet-400/50 text-[16px] mt-0.5">Tracking {FREE_LIMIT} of {FREE_LIMIT} tools</p>
                 </div>
-                <button type="button" onClick={onUpgrade} className="shrink-0 px-4 py-2 rounded-xl text-[12px] font-semibold btn-glow text-white">
+                <button type="button" onClick={onUpgrade} className="shrink-0 px-4 py-2 rounded-xl text-[16px] font-semibold btn-glow text-white">
                   Upgrade →
                 </button>
               </div>
@@ -287,15 +287,15 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
                     <span className="text-amber-400 text-[15px]">⚠</span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-amber-200 font-semibold text-[13px]">${idleCost}/mo going to waste</p>
-                    <p className="text-amber-400/50 text-[12px] mt-0.5">
+                    <p className="text-amber-200 font-semibold text-[15px]">${idleCost}/mo going to waste</p>
+                    <p className="text-amber-400/50 text-[16px] mt-0.5">
                       {idleTools.length} tool{idleTools.length > 1 ? 's' : ''} unused in 30+ days
                     </p>
                     <div className="flex flex-wrap gap-1.5 mt-3">
                       {idleTools.map(s => {
                         const tool = getToolById(s.toolId);
                         return tool ? (
-                          <span key={s.toolId} className="text-[11px] px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400/80 border border-amber-500/20 font-medium">
+                          <span key={s.toolId} className="text-[15px] px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400/80 border border-amber-500/20 font-medium">
                             {tool.name}
                           </span>
                         ) : null;
@@ -312,14 +312,14 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
                 <div className="text-[56px] leading-none">🛸</div>
                 <div>
                   <p className="font-bold text-[18px] text-white/75">No tools tracked yet</p>
-                  <p className="text-[13px] text-white/85 mt-1 max-w-[260px] mx-auto leading-relaxed">
+                  <p className="text-[15px] text-white/85 mt-1 max-w-[260px] mx-auto leading-relaxed">
                     Add your first AI subscription to start tracking your spend
                   </p>
                 </div>
                 <button
                   type="button"
                   onClick={() => setShowAddModal(true)}
-                  className="mt-2 px-6 py-3 rounded-xl text-[13px] font-semibold btn-glow text-white"
+                  className="mt-2 px-6 py-3 rounded-xl text-[15px] font-semibold btn-glow text-white"
                 >
                   + Add First Subscription
                 </button>
@@ -330,7 +330,7 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
             {Object.entries(grouped).map(([cat, items]) => (
               <div key={cat} className="space-y-2">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/80">
+                  <span className="text-[15px] font-semibold uppercase tracking-[0.18em] text-white/80">
                     {categoryLabels[cat]}
                   </span>
                   <div className="flex-1 h-px bg-white/[0.04]" />
@@ -362,7 +362,7 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
                   <button
                     type="button"
                     onClick={onUpgrade}
-                    className="w-full py-3.5 rounded-2xl card-glass text-[13px] text-violet-400/70 hover:text-violet-300 transition-all duration-200 font-medium border border-violet-500/15 hover:border-violet-500/30"
+                    className="w-full py-3.5 rounded-2xl card-glass text-[15px] text-violet-400/70 hover:text-violet-300 transition-all duration-200 font-medium border border-violet-500/15 hover:border-violet-500/30"
                   >
                     + Add Subscription (Upgrade to Pro)
                   </button>
@@ -370,7 +370,7 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
                   <button
                     type="button"
                     onClick={() => setShowAddModal(true)}
-                    className="w-full py-3.5 rounded-2xl text-[13px] font-semibold text-white btn-glow"
+                    className="w-full py-3.5 rounded-2xl text-[15px] font-semibold text-white btn-glow"
                   >
                     + Add Subscription
                   </button>
@@ -385,43 +385,43 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
             {/* Stat pills — 2×2 grid */}
             <div className="grid grid-cols-2 gap-3">
               <div className="p-4 rounded-2xl card-glass hover:scale-[1.03] transition-transform cursor-default">
-                <p className="text-[9px] uppercase tracking-[0.2em] text-white/60 mb-2.5 font-medium">Active</p>
+                <p className="text-[16px] uppercase tracking-[0.2em] text-white/60 mb-2.5 font-medium">Active</p>
                 <p className="text-[28px] font-bold tracking-tight leading-none text-white/90 tabular-nums">{activeCount}</p>
-                <p className="text-[11px] text-white/85 mt-2">used recently</p>
+                <p className="text-[15px] text-white/85 mt-2">used recently</p>
               </div>
               <div className={`p-4 rounded-2xl hover:scale-[1.03] transition-all cursor-default ${
                 idleTools.length > 0 ? 'bg-amber-500/[0.07] border border-amber-500/[0.18]' : 'card-glass'
               }`}>
-                <p className="text-[9px] uppercase tracking-[0.2em] text-white/60 mb-2.5 font-medium">Idle</p>
+                <p className="text-[16px] uppercase tracking-[0.2em] text-white/60 mb-2.5 font-medium">Idle</p>
                 <p className={`text-[28px] font-bold tracking-tight leading-none tabular-nums ${idleTools.length > 0 ? 'text-amber-400' : 'text-white/90'}`}>
                   {idleCount}
                 </p>
-                <p className="text-[11px] text-white/85 mt-2">${idleCost}/mo wasted</p>
+                <p className="text-[15px] text-white/85 mt-2">${idleCost}/mo wasted</p>
               </div>
               <div className="p-4 rounded-2xl card-glass hover:scale-[1.03] transition-transform cursor-default">
-                <p className="text-[9px] uppercase tracking-[0.2em] text-white/60 mb-2.5 font-medium">Yearly</p>
+                <p className="text-[16px] uppercase tracking-[0.2em] text-white/60 mb-2.5 font-medium">Yearly</p>
                 <p className="text-[28px] font-bold tracking-tight leading-none text-white/90 tabular-nums">
                   ${yearlyTotal > 999 ? (yearlyTotal / 1000).toFixed(1) + 'k' : yearlyTotal}
                 </p>
-                <p className="text-[11px] text-white/85 mt-2">committed</p>
+                <p className="text-[15px] text-white/85 mt-2">committed</p>
               </div>
               {showSoonPill ? (
                 <div className={`p-4 rounded-2xl hover:scale-[1.03] transition-all cursor-default ${
                   hasSoonRenewing ? 'bg-amber-500/[0.07] border border-amber-500/[0.18]' : 'card-glass'
                 }`}>
-                  <p className="text-[9px] uppercase tracking-[0.2em] text-white/60 mb-2.5 font-medium">Soon</p>
+                  <p className="text-[16px] uppercase tracking-[0.2em] text-white/60 mb-2.5 font-medium">Soon</p>
                   <p className={`text-[28px] font-bold tracking-tight leading-none tabular-nums ${hasSoonRenewing ? 'text-amber-400' : 'text-white/90'}`}>
                     {animatedSoon}
                   </p>
-                  <p className="text-[11px] text-white/85 mt-2">renewing soon</p>
+                  <p className="text-[15px] text-white/85 mt-2">renewing soon</p>
                 </div>
               ) : (
                 <div className="p-4 rounded-2xl card-glass hover:scale-[1.03] transition-transform cursor-default">
-                  <p className="text-[9px] uppercase tracking-[0.2em] text-white/60 mb-2.5 font-medium">Tools</p>
+                  <p className="text-[16px] uppercase tracking-[0.2em] text-white/60 mb-2.5 font-medium">Tools</p>
                   <p className="text-[28px] font-bold tracking-tight leading-none text-white/90 tabular-nums">
                     {data.subscriptions.length}
                   </p>
-                  <p className="text-[11px] text-white/85 mt-2">tracked</p>
+                  <p className="text-[15px] text-white/85 mt-2">tracked</p>
                 </div>
               )}
             </div>
@@ -429,13 +429,13 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
             {/* Spend by category */}
             {categorySpend.length > 0 && (
               <div className="p-5 rounded-2xl card-glass">
-                <p className="text-[10px] uppercase tracking-[0.18em] text-white/60 font-semibold mb-4">Spend by category</p>
+                <p className="text-[15px] uppercase tracking-[0.18em] text-white/60 font-semibold mb-4">Spend by category</p>
                 <div className="space-y-3.5">
                   {categorySpend.map(c => (
                     <div key={c.cat}>
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-[11px] text-white/75">{c.label}</span>
-                        <span className="text-[12px] text-white/85 font-semibold tabular-nums">${c.spend}/mo</span>
+                        <span className="text-[15px] text-white/75">{c.label}</span>
+                        <span className="text-[16px] text-white/85 font-semibold tabular-nums">${c.spend}/mo</span>
                       </div>
                       <div className="h-1 rounded-full bg-white/[0.06] overflow-hidden">
                         <div
@@ -452,17 +452,17 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
             {/* Renewing soon (within 14 days) */}
             {soonTools.length > 0 && (
               <div className="p-5 rounded-2xl card-glass">
-                <p className="text-[10px] uppercase tracking-[0.18em] text-white/60 font-semibold mb-4">Renewing soon</p>
+                <p className="text-[15px] uppercase tracking-[0.18em] text-white/60 font-semibold mb-4">Renewing soon</p>
                 <div className="space-y-3">
                   {soonTools.map(({ s, tool, days }) => (
                     <div key={s.toolId} className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-2.5 min-w-0">
-                        <div className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 text-[10px] font-bold ${TOOL_COLORS[tool!.name.charCodeAt(0) % TOOL_COLORS.length]}`}>
+                        <div className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 text-[15px] font-bold ${TOOL_COLORS[tool!.name.charCodeAt(0) % TOOL_COLORS.length]}`}>
                           {tool!.name[0]}
                         </div>
-                        <span className="text-[12px] text-white/85 truncate">{tool!.name}</span>
+                        <span className="text-[16px] text-white/85 truncate">{tool!.name}</span>
                       </div>
-                      <span className={`text-[11px] font-medium shrink-0 ${days <= 3 ? 'text-amber-400' : 'text-white/70'}`}>
+                      <span className={`text-[15px] font-medium shrink-0 ${days <= 3 ? 'text-amber-400' : 'text-white/70'}`}>
                         {days === 0 ? 'today' : `${days}d`}
                       </span>
                     </div>
@@ -479,21 +479,21 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
                     <div className="absolute inset-0 bg-gradient-to-br from-violet-600/8 to-indigo-600/4 pointer-events-none" />
                     <div className="absolute top-0 right-0 w-48 h-48 bg-violet-500/8 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none" />
                     <div className="relative">
-                      <p className="text-[10px] text-white/60 uppercase tracking-[0.2em] font-medium mb-3">My AI Stack</p>
+                      <p className="text-[15px] text-white/60 uppercase tracking-[0.2em] font-medium mb-3">My AI Stack</p>
                       <div className="flex items-end gap-2 leading-none mb-1">
                         <span className="text-[40px] font-black tracking-[-0.04em] leading-none text-gradient-hero tabular-nums">${total}</span>
                         <span className="text-white/60 text-base font-normal pb-1.5">/mo</span>
                       </div>
-                      <p className="text-white/70 text-[12px]">{data.subscriptions.length} tools in orbit</p>
-                      {goal && <p className="text-[11px] text-white/60 mt-0.5">{goal.emoji} {goal.label}</p>}
-                      <p className="text-[9px] text-white/50 mt-3 font-medium tracking-[0.18em] uppercase">orbit.app</p>
+                      <p className="text-white/70 text-[16px]">{data.subscriptions.length} tools in orbit</p>
+                      {goal && <p className="text-[15px] text-white/60 mt-0.5">{goal.emoji} {goal.label}</p>}
+                      <p className="text-[16px] text-white/50 mt-3 font-medium tracking-[0.18em] uppercase">orbit.app</p>
                     </div>
                   </div>
                   <div className="flex gap-2">
-                    <button type="button" onClick={handleCopyShare} className="flex-1 py-2.5 rounded-xl text-[12px] font-semibold btn-glow text-white">
+                    <button type="button" onClick={handleCopyShare} className="flex-1 py-2.5 rounded-xl text-[16px] font-semibold btn-glow text-white">
                       {copied ? '✓ Copied!' : 'Copy text'}
                     </button>
-                    <button type="button" onClick={() => setShowShareCard(false)} className="px-4 py-2.5 rounded-xl text-[12px] text-white/70 hover:text-white card-glass transition-all">
+                    <button type="button" onClick={() => setShowShareCard(false)} className="px-4 py-2.5 rounded-xl text-[16px] text-white/70 hover:text-white card-glass transition-all">
                       Close
                     </button>
                   </div>
@@ -502,7 +502,7 @@ export default function Dashboard({ data, user, onReset, onUpdate, onUpgrade }: 
                 <button
                   type="button"
                   onClick={() => setShowShareCard(true)}
-                  className="w-full py-3.5 rounded-2xl card-glass text-[12px] text-white/85 hover:text-white/60 transition-all duration-200 font-medium"
+                  className="w-full py-3.5 rounded-2xl card-glass text-[16px] text-white/85 hover:text-white/60 transition-all duration-200 font-medium"
                 >
                   Share my AI stack →
                 </button>
@@ -555,7 +555,7 @@ function RenewalBadge({ renewsOn }: { renewsOn: string }) {
 
   if (days <= 0) {
     return (
-      <span className="text-[11px] text-red-400 font-medium">
+      <span className="text-[15px] text-red-400 font-medium">
         {days === 0 ? 'Renews today' : 'Due for renewal'}
       </span>
     );
@@ -563,7 +563,7 @@ function RenewalBadge({ renewsOn }: { renewsOn: string }) {
 
   if (days <= 7) {
     return (
-      <span className="text-[11px] text-amber-400 font-medium">
+      <span className="text-[15px] text-amber-400 font-medium">
         Renews in {days} day{days !== 1 ? 's' : ''}
       </span>
     );
@@ -572,7 +572,7 @@ function RenewalBadge({ renewsOn }: { renewsOn: string }) {
   const date = new Date(renewsOn);
   const formatted = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   return (
-    <span className="text-[11px] text-white/85">
+    <span className="text-[15px] text-white/85">
       Renews {formatted}
     </span>
   );
@@ -631,31 +631,31 @@ function ToolCard({
     }`}>
       {idle && <div className="absolute left-0 top-3 bottom-3 w-0.5 bg-amber-400/45 rounded-full" />}
 
-      <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-[13px] font-bold ${toolColor}`}>
+      <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-[15px] font-bold ${toolColor}`}>
         {tool.name[0]}
       </div>
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <span className="font-medium text-[14px] text-white/85">{tool.name}</span>
+          <span className="font-medium text-[16px] text-white/85">{tool.name}</span>
           {idle && (
-            <span className="text-[9px] px-1.5 py-0.5 rounded-md bg-amber-500/10 text-amber-400/75 border border-amber-500/15 font-semibold tracking-wide uppercase">
+            <span className="text-[16px] px-1.5 py-0.5 rounded-md bg-amber-500/10 text-amber-400/75 border border-amber-500/15 font-semibold tracking-wide uppercase">
               idle
             </span>
           )}
         </div>
         <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-          <span className={`text-[11px] ${lastUsedLabel.className}`}>{lastUsedLabel.text}</span>
+          <span className={`text-[15px] ${lastUsedLabel.className}`}>{lastUsedLabel.text}</span>
           {sub.renewsOn && <RenewalBadge renewsOn={sub.renewsOn} />}
         </div>
       </div>
 
       <div className="flex items-center gap-2 shrink-0">
         {savedFlash ? (
-          <span className="text-[12px] text-violet-400 font-medium">Saved ✓</span>
+          <span className="text-[16px] text-violet-400 font-medium">Saved ✓</span>
         ) : editingPrice ? (
           <div className="flex items-center gap-1 bg-white/[0.06] border border-violet-500/35 rounded-lg px-2 py-1">
-            <span className="text-white/72 text-[12px]">$</span>
+            <span className="text-white/72 text-[16px]">$</span>
             <input
               type="number"
               min={0}
@@ -663,16 +663,16 @@ function ToolCard({
               onChange={e => setPriceInput(e.target.value)}
               onBlur={commitPrice}
               onKeyDown={handlePriceKeyDown}
-              className="w-14 bg-transparent text-right text-[13px] font-bold text-white outline-none"
+              className="w-14 bg-transparent text-right text-[15px] font-bold text-white outline-none"
               autoFocus
             />
-            <span className="text-white/72 text-[12px]">/mo</span>
+            <span className="text-white/72 text-[16px]">/mo</span>
           </div>
         ) : (
           <button
             type="button"
             onClick={() => { setPriceInput(String(sub.monthlyPrice)); setEditingPrice(true); }}
-            className="text-[14px] font-semibold text-white/80 hover:text-white/85 transition-colors cursor-pointer"
+            className="text-[16px] font-semibold text-white/80 hover:text-white/85 transition-colors cursor-pointer"
             title="Click to edit price"
           >
             ${sub.monthlyPrice}/mo
@@ -682,7 +682,7 @@ function ToolCard({
         <button
           type="button"
           onClick={onMarkUsed}
-          className={`text-[11px] px-2.5 py-1.5 rounded-lg transition-all font-medium ${
+          className={`text-[15px] px-2.5 py-1.5 rounded-lg transition-all font-medium ${
             idle
               ? 'bg-violet-600/15 border border-violet-500/22 text-violet-300 hover:bg-violet-600/28 hover:text-violet-200'
               : 'opacity-0 group-hover:opacity-100 bg-white/[0.04] border border-white/10 text-white/70 hover:text-white/85 hover:bg-white/[0.07]'
@@ -693,10 +693,10 @@ function ToolCard({
 
         {showRemove ? (
           <div className="flex items-center gap-1">
-            <button type="button" onClick={onRemove} className="text-[11px] px-2.5 py-1.5 rounded-lg bg-red-500/12 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-all font-medium">
+            <button type="button" onClick={onRemove} className="text-[15px] px-2.5 py-1.5 rounded-lg bg-red-500/12 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-all font-medium">
               Remove
             </button>
-            <button type="button" onClick={() => setShowRemove(false)} className="text-[11px] px-2 py-1.5 text-white/60 hover:text-white/50 transition-colors">
+            <button type="button" onClick={() => setShowRemove(false)} className="text-[15px] px-2 py-1.5 text-white/60 hover:text-white/50 transition-colors">
               Cancel
             </button>
           </div>
